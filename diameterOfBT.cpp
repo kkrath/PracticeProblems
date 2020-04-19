@@ -1,6 +1,7 @@
 /* Diameter of a binary Tree */
 
 #include<iostream>
+#include<utility>
 using namespace std;
 
 struct TreeNode{
@@ -22,26 +23,25 @@ class Solution{
 			/* do nothing - empty constructor */
 		}
 
-		int daimeterOfBT(TreeNode* root,int *height){
+		int daimeterOfBT(TreeNode* root){
 
-			if (root==NULL){
-				*height = 0;
+			if (root==NULL)
 				return 0;
-			}
 
-			int lHeight = 0;
-			int rHeight = 0;
+			int lHeight = heightOfBT(root->left);
+			int rHeight = heightOfBT(root->right);
 
-			int lDiameter =  0; 
-			int rDiameter =  0;
-
-			*height = max(lHeight,rHeight) + 1;
-			lDiameter = daimeterOfBT(root->left,&lHeight);
-			rDiameter = daimeterOfBT(root->right,&rHeight);
-
+			int lDiameter =  daimeterOfBT(root->left);
+			int rDiameter =  daimeterOfBT(root->right);
 
 			return max(lHeight+rHeight, max(lDiameter,rDiameter));
 
+
+		}
+
+		int diameterOfBTOpt(TreeNode* root){
+
+			return diameterHt(root).first;
 		}
 	private:
 		int heightOfBT(TreeNode* root){
@@ -57,6 +57,17 @@ class Solution{
 
 		return max(heightOfBT(root->left),heightOfBT(root->right))+1;
 		}
+
+		pair<int,int> diameterHt(TreeNode* node){
+
+			if(node == NULL){
+				return{0,0};
+			}
+			pair<int,int> left = diameterHt(node->left);
+			pair<int,int> right = diameterHt(node->right);
+			int diameter = max({left.second+right.secnd,left.first,right.first});
+			return {diameter,max(left.second,right.second)+1};
+		}
 		
 
 };
@@ -71,6 +82,6 @@ int main(){
 	root->right->left = getNewNode(5);
 	root->right->right = getNewNode(6);
 	Solution* sol = new Solution();
-	int *height = 0;
-	cout << "Diameter of BT:" << sol->daimeterOfBT(root,height);
+	cout << "Diameter of BT:" << sol->daimeterOfBT(root);
+	cout << "Diameter of BT:" << sol->diameterOfBTOpt(root);
 }
