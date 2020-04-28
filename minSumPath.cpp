@@ -6,6 +6,7 @@ class Solution {
 
 private:
     int findSmallestNeighbour(vector<vector<int>>& grid,int row,int col,vector<vector<int>> &sumGrid){
+
         // handle the base case - matrix out of bounds exception
         if(row == grid.size()-1 && col == grid[0].size()-1)
             /* we have reached the end of the matrix */
