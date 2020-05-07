@@ -35,11 +35,9 @@ public:
         int C = dimension[1];
         int answer = C;
         for(int row = 0; row < R; row++){
-            for(int col = 0; col < answer & answer > 0; col++){
-                if(binaryMatrix.get(row,col) == 1){
-                    answer = col - 1;
-                    break;
-                }
+            while(answer > 0 && binaryMatrix.get(row,answer - 1) == 1 )
+                answer--;
             }
         }
-};
+        return (answer == C ? -1 : answer);
+    };
