@@ -40,8 +40,8 @@ public:
 		/* base condition */
 		if(root == nullptr)
 			return 0;
-		lheight = height(root->left);
-		rheight = height(root->right);
+		int lheight = height(root->left);
+		int rheight = height(root->right);
 
 		return max(lheight,rheight)+1;
 	}
