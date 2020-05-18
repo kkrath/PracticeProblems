@@ -1,6 +1,7 @@
 /* implememt a prefix Tree or Trie */
 
-
+/* using a vector and class instead of a struct should increase the performances 
+   theoritically but that is ye to be ascertained */
 #include<iostream>
 #include<string>
 
