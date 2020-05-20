@@ -7,44 +7,35 @@ using namespace std;
 class Solution{
 	public:
 		vector<int> findAnagrams(string text, string pattern){
-		int pat_len = pattern.size();
-		int text_len = text.size();
-		/* array is initialized to keep track of char counts */
-		int c_arr[256]{0};
-		int t_arr[256]{0};
+		
+		/* return variable will be a vector */
 		vector<int> anagrams;
-		for(char c : pattern)
-			c_arr[c - 'a']++;
+		int window = pattern.size();
+		int len = text.size();
+		if(len < window)
+			return anagrams;
+		vector<int> phash(26,0);
+		vector<int> thash(26,0);	
 
-		/* now in the serach text we will look at all pat_len letter words starting from 
-		   the zeroth index until text_len - pat_len th index to see if we found a match
-		   so that number of char counts in the c_arr is same as that of the match string*/
-		for(int i = 0; i < text_len - pat_len + 1 ; i ++){
-			cout << "now at index :" << i ;
-			if( i < 1){
-				int j = i;
-				while(j < i + pat_len){
-					int idx = text[j] - 'a';
-					t_arr[idx]++;
-					j++;
-				}	
-			}else{
+		int windowStart = 0;
+		int windowEnd = 0;
+		/* fill the first wiindow - create a window */
 
-				int idx = text[i+pat_len-1] - 'a';
-				cout << " " << idx << " " << endl;
-				t_arr[idx]++;/* only add the next element as other will remain as is */
-			}
-			int k;
-			for(k = 0; k < 256; k++){
-				if(c_arr[k] != t_arr[k])
-				break;
-			}
-
-			t_arr[text[i] - 'a']--; /* remove the current element as we move forward */
-			if(k == 256) /* that means both the strings are anagram */
-				anagrams.push_back(i);
+		while( windowEnd < window ){
+			phash[pattern[windowEnd] - 'a']++;
+			thash[text[windowEnd++] - 'a']++;
 		}
-
+		windowEnd--;
+		/* now we will slide the window and check for anagrams by comparing the hash values */
+		while( windowEnd < len ){
+			if( phash == thash )
+				anagrams.push_back(windowStart);
+			windowEnd += 1;
+			if(windowEnd != len)
+				thash[text[windowEnd] - 'a']++;
+			thash[text[windowStart] - 'a']--;
+			windowStart++;
+		}
 		return anagrams;
 }
 
