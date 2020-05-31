@@ -44,10 +44,8 @@ public:
 };
 
 int main(){
-	vector<int> arr{1, 3, 5, 4, 6, 13, 10, 7};
+	vector<int> arr{2,7,4,1,8,1};
 	Heap *heap = new Heap();
 	heap->heapify(arr);
-	for(int i:arr)
-		cout << i << ",";
-	cout << endl;
+	cout<< "The maximum element is heap is: " << arr[0];
 }

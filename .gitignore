@@ -1,0 +1,8 @@
+.vscode/c_cpp_properties.json
+.vscode
+# Ignore files with extension `.class` & `.sm` & `.exe` & `.out`
+*.class
+*.sm
+*.exe
+*.out
+
