@@ -1,8 +1,9 @@
-.vscode/c_cpp_properties.json
-.vscode
-# Ignore files with extension `.class` & `.sm` & `.exe` & `.out`
-*.class
-*.sm
-*.exe
-*.out
+# Ignore the build and lib dirs
+build
+lib/*
 
+# Ignore any executables
+bin/*
+
+# Ignore IDE specific folders
+.vscode/*
