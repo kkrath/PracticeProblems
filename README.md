@@ -1,6 +1,5 @@
 
-#Practice Problems for Coding Interviews
+# Practice problems
 
-This is a collection of all the frequently asekd questions in coding
-interviews. This is not a complete list by any means and I will keep 
-changing the contents as and when my understanding of the topic grows.
+This is a collection of frequently asked coding interview questions collected from various siurces like leetcode, geeks for geeks, intrviewbit etc.
+This is by no mean a complete list. I will keep changing the contennts and revise the algorithm as and when I understand the topics better.
